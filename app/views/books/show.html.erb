@@ -1,0 +1,15 @@
+<!-- https://rails-study.net/flash/を参照 -->
+<% if flash[:notice] %>
+  <p class="message"><%= flash[:notice] %></p>
+<% end %>
+<h2>Title:</h2>
+<!-- showアクションで取得したデータのカラムのtitleを表示 -->
+<p><%= @book.title %></p>
+
+<h2>Body:</h2>
+<p><%= @book.body %></p>
+
+<!-- EditとBackを追加-->
+<%= link_to "Edit" ,edit_book_path %>
+<%="|"%>
+<%= link_to "Back" ,books_path %>
