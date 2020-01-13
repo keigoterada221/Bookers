@@ -43,12 +43,18 @@ class BooksController < ApplicationController
     end
 
     def update
-    	book = Book.find(params[:id])
+        # 下記のrenderでeditのhtmlに飛びたいが、飛ぶ先にあるインスタンス変数が
+        # updateアクション内にないのでeditアクション内の変数をコピーして貼り付ける
+        # 下記の変数をbookから@bookに変更
+        @book = Book.find(params[:id])
+    	# book = Book.find(params[:id])を上記に変更
     	#book.update(book_params)
     	# 詳細画面へ
-        if book.update(book_params)
+        if @book.update(book_params)
             flash[:notice] = "Book was successfully updated."
           redirect_to book_path(book.id)
+        else
+            render :edit
         end
     end
 
